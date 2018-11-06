@@ -5,10 +5,10 @@
 <body>
 <div class="container" >
 	<div id ="left" class="col" onclick="cl_left()">
-		<img id="myImg1"  width="500" height="500">
+		<img id="myImg1">
 	</div>
 	<div id ="right" class="col" onclick="cl_right()">
-		<img id="myImg2"  width="500" height="500">
+		<img id="myImg2">
 	</div>
 <div>
 <script type="application/javascript">
@@ -40,8 +40,8 @@
 		        .then(data => {
 		        	quote_left = data[0]
 		        	quote_right = data[1]
-		            document.getElementById("left").innerHTML += "</br> <p>" + data[0] + "</p>" + char1;
-		            document.getElementById("right").innerHTML += "</br> <p>" + data[1] + "</p>" + char2;
+		            document.getElementById("left").innerHTML += "</br> <p> \"" + data[0] + "\"</p>" + char1;
+		            document.getElementById("right").innerHTML += "</br> <p>\"" + data[1] + "\"</p>" + char2;
 		        })
 		        .catch(err => {
 		            console.error('An error ocurred', err);

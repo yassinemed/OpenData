@@ -2,7 +2,7 @@
  display:table;
     position: absolute;
     top: 60%;
-    left: 50%;
+    left: 47%;
     margin-top: -25%;
     margin-left: -25%;
 }
@@ -13,19 +13,18 @@
  float: left;
 }
 
+
+
 #left {
 	margin-right:100px;
 }
 
 img {
-    max-width: 100%;
+    width: 34em;
+    height: 40em;
 }
 
 body {
   background-color: black;
   color: white;
 }
-
-#divElement{
-
-}​
