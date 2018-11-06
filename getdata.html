@@ -1,12 +1,17 @@
 <html>
 <body>
-
-<img id="myImg1"  width="500" height="500">
-<img id="myImg2"  width="500" height="500">
+<div class="container">
+	<div id ="left" >
+		<img id="myImg1"  width="500" height="500">
+	</div>
+	<div id ="right" >
+		<img id="myImg2"  width="500" height="500">
+	</div>
+<div>
 <script>
 	function getRandomInt(max) {
 		return Math.floor(Math.random() * Math.floor(max));
-}
+		}
 
 	fetch('http://hp-api.herokuapp.com/api/characters')
 	    .then(response => response.json())
@@ -19,6 +24,16 @@
 
 	        document.getElementById("myImg1").src = data[im1].image;
 	        document.getElementById("myImg2").src = data[im2].image;
+	    })
+	    .catch(err => {
+	        console.error('An error ocurred', err);
+	    });
+
+	fetch('http://ron-swanson-quotes.herokuapp.com/v2/quotes/2')
+	    .then(response => response.json())
+	    .then(data => {
+	    	document.getElementById("left").innerHTML += "</br> <p>" + data[0] + "</p>";
+	    	document.getElementById("right").innerHTML += "</br> <p>" + data[1] + "</p>";
 	    })
 	    .catch(err => {
 	        console.error('An error ocurred', err);
