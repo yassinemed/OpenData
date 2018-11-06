@@ -4,10 +4,10 @@
 </head>
 <body>
 <div class="container" >
-	<div id ="left" class="col" onclick="cl()">
+	<div id ="left" class="col" onclick="cl_left()">
 		<img id="myImg1"  width="500" height="500">
 	</div>
-	<div id ="right" class="col" onclick="cl()">
+	<div id ="right" class="col" onclick="cl_right()">
 		<img id="myImg2"  width="500" height="500">
 	</div>
 <div>
@@ -16,18 +16,18 @@
         return Math.floor(Math.random() * Math.floor(max));
         }
         var char1, char2;
-        var test;
+        var name_left, name_right, quote_left, quote_right;
      //HP
     fetch('http://hp-api.herokuapp.com/api/characters')
         .then(response => response.json())
         .then(data => {
-        	
             im1 = getRandomInt(25);
             im2 = getRandomInt(25);
             while (im1 == im2){
                 im2 = getRandomInt(25);
             }
-            test = data[im1].name;
+            name_left = data[im1].name;
+            name_right = data[im2].name;
             document.getElementById("myImg1").src = data[im1].image;
             document.getElementById("myImg2").src = data[im2].image;
 
@@ -38,6 +38,8 @@
 		    fetch('http://ron-swanson-quotes.herokuapp.com/v2/quotes/2')
 		        .then(response => response.json())
 		        .then(data => {
+		        	quote_left = data[0]
+		        	quote_right = data[1]
 		            document.getElementById("left").innerHTML += "</br> <p>" + data[0] + "</p>" + char1;
 		            document.getElementById("right").innerHTML += "</br> <p>" + data[1] + "</p>" + char2;
 		        })
@@ -50,7 +52,14 @@
             console.error('An error ocurred', err);
         });
 
-        function cl() {
+        function cl_left() {
+        	alert(name_left)
+        	alert(quote_left)
+		    location.reload();
+			}
+		function cl_right() {
+        	alert(name_right)
+        	alert(quote_right)
 		    location.reload();
 			}
 
