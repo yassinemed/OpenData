@@ -16,34 +16,32 @@ app.get('/getcards', function (req, res) {
 	request(reqURL,
 		function (error, response, body) {
 
-			var questions = JSON.parse(body).filter(entry => entry.cardType === 'Q');
-			var answers = JSON.parse(body).filter(entry => entry.cardType === 'A');
+			var listOfQuestions = JSON.parse(body).filter(entry => entry.cardType === 'Q');
+			var listOfAnswers = JSON.parse(body).filter(entry => entry.cardType === 'A');
 
 
-			var idBlackCard = Math.floor(Math.random() * questions.length);
-			var blackCardText = questions[idBlackCard]['text'];
-			var nbAnswer = questions[idBlackCard]['numAnswers'];
+			var idQuestion = Math.floor(Math.random() * listOfQuestions.length);
+			var question = listOfQuestions[idQuestion]['text'];
+			var numAnswer = listOfQuestions[idQuestion]['numAnswers'];
 
-			var complet = blackCardText;
+			var total = question;
 			var i;
 
-			for (i = 0; i<nbAnswer; i++){
-				idBlankCard = Math.floor(Math.random() * answers.length);
-				blankCardText = answers[idBlankCard]['text'];
+			for (i = 0; i<numAnswer; i++){
+				idAnswer = Math.floor(Math.random() * listOfAnswers.length);
+				answer = listOfAnswers[idAnswer]['text'];
 
-
-				var index_ = blackCardText.indexOf('_');
+				var index_ = question.indexOf('_');
+				answer = answer.replace('.', '')
 				if (index_ == -1){
-					complet = blackCardText.concat(" ",blankCardText);
-				}else{
-					complet = complet.replace('_',blankCardText);
+					total = question.concat(" ", answer);
 				}
-				console.log(complet);
-
+				else{
+					if (index_ != 0) {answer = answer.charAt(0).toLowerCase() + answer.slice(1)}
+					total = total.replace('_', answer);
+				}
 			}
-			oui = '';
-			test = oui.concat(blackCardText+'<br/>'+blankCardText+'<br/>'+complet+'<br/>'+nbAnswer);
-			
+			test = question.concat('<br/>'+answer+'<br/>'+total+'<br/>'+numAnswer);
 
 			res.send(test);
 		})
