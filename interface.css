@@ -1,6 +1,15 @@
 .container {
  display:table;
+ margin-left: auto;
+ margin-right: auto;
 }
 .col{
+ width:500;
  display:table-cell;
+ word-wrap:break-word;
+ float: left;
+}
+
+#left {
+	margin-right:100px;
 }
