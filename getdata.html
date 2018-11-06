@@ -1,0 +1,18 @@
+<html>
+<body>
+
+<img id="myImg"  width="500" height="500">
+<script>
+fetch('http://hp-api.herokuapp.com/api/characters')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data[1].image);
+        document.getElementById("myImg").src = data[1].image;
+    })
+    .catch(err => {
+        console.error('An error ocurred', err);
+    });
+ </script>
+
+ </body>
+ </html>
