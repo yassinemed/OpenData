@@ -1,0 +1,6 @@
+.container {
+ display:table;
+}
+.col{
+ display:table-cell;
+}
