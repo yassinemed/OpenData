@@ -4,10 +4,11 @@ const request = require('request')
 //test
 const app = express()
 
-app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/getData.html');
-});
+app.use(express.static('public'));
 
+app.get('/', (req, res) => {
+	res.sendFile(__dirname + '/public/getData.html');
+});
 
 app.get('/getcards', function (req, res) {
 	reqURL = "https://raw.githubusercontent.com/nodanaonlyzuul/against-humanity/master/source/cards.json"
