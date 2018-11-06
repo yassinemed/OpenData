@@ -1,17 +1,28 @@
 <html>
 <body>
 
-<img id="myImg"  width="500" height="500">
+<img id="myImg1"  width="500" height="500">
+<img id="myImg2"  width="500" height="500">
 <script>
-fetch('http://hp-api.herokuapp.com/api/characters')
-    .then(response => response.json())
-    .then(data => {
-        console.log(data[1].image);
-        document.getElementById("myImg").src = data[1].image;
-    })
-    .catch(err => {
-        console.error('An error ocurred', err);
-    });
+	function getRandomInt(max) {
+		return Math.floor(Math.random() * Math.floor(max));
+}
+
+	fetch('http://hp-api.herokuapp.com/api/characters')
+	    .then(response => response.json())
+	    .then(data => {
+	    	im1 = getRandomInt(25);
+	    	im2 = getRandomInt(25);
+	    	while (im1 == im2){
+	    		im2 = getRandomInt(25);
+	    	}
+
+	        document.getElementById("myImg1").src = data[im1].image;
+	        document.getElementById("myImg2").src = data[im2].image;
+	    })
+	    .catch(err => {
+	        console.error('An error ocurred', err);
+	    });
  </script>
 
  </body>
