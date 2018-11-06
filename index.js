@@ -20,27 +20,29 @@ app.get('/getcards', function (req, res) {
 			var answers = JSON.parse(body).filter(entry => entry.cardType === 'A');
 
 
-			var idBlackCard=Math.floor(Math.random() * questions.length);
-			var blackCardText=questions[idBlackCard]['text'];
-			var nbAnswer=questions[idBlackCard]['numAnswers'];
+			var idBlackCard = Math.floor(Math.random() * questions.length);
+			var blackCardText = questions[idBlackCard]['text'];
+			var nbAnswer = questions[idBlackCard]['numAnswers'];
 
-			var complet;
+			var complet = blackCardText;
 			var i;
-			for (i=0;i<nbAnswer;i++){
-				console.log(i);
-				idBlankCard=Math.floor(Math.random() * answers.length);
-				blankCardText=answers[idBlankCard]['text'];
+
+			for (i = 0; i<nbAnswer; i++){
+				idBlankCard = Math.floor(Math.random() * answers.length);
+				blankCardText = answers[idBlankCard]['text'];
+
 
 				var index_ = blackCardText.indexOf('_');
-				if (index_ ==-1){
-					complet=blackCardText.concat(" ",blankCardText);
+				if (index_ == -1){
+					complet = blackCardText.concat(" ",blankCardText);
 				}else{
-					complet=blackCardText.replace('_',blankCardText);
+					complet = complet.replace('_',blankCardText);
 				}
+				console.log(complet);
 
 			}
-			bite='';
-			test=bite.concat(blackCardText+'<br/>'+blankCardText+'<br/>'+complet+'<br/>'+nbAnswer);
+			oui = '';
+			test = oui.concat(blackCardText+'<br/>'+blankCardText+'<br/>'+complet+'<br/>'+nbAnswer);
 			
 
 			res.send(test);
