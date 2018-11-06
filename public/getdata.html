@@ -1,50 +1,55 @@
 <html>
-
 <head>
-    <link rel="stylesheet" type="text/css" href="interface.css">
+	<link rel="stylesheet" type="text/css" href="interface.css">
 </head>
-
 <body>
-    <div class="container">
-        <div id="left" class="col">
-            <img id="myImg1" width="500" height="500">
-        </div>
-        <div id="right" class="col">
-            <img id="myImg2" width="500" height="500">
-        </div>
-        <div>
-            <script>
-                function getRandomInt(max) {
-                    return Math.floor(Math.random() * Math.floor(max));
-                }
+<div class="container" >
+	<div id ="left" class="col">
+		<img id="myImg1"  width="500" height="500">
+	</div>
+	<div id ="right" class="col">
+		<img id="myImg2"  width="500" height="500">
+	</div>
+<div>
+<script>
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+        }
+        var char1, char2;
+     //HP
+    fetch('http://hp-api.herokuapp.com/api/characters')
+        .then(response => response.json())
+        .then(data => {
+            im1 = getRandomInt(25);
+            im2 = getRandomInt(25);
+            while (im1 == im2){
+                im2 = getRandomInt(25);
+            }
 
-                fetch('http://hp-api.herokuapp.com/api/characters')
-                    .then(response => response.json())
-                    .then(data => {
-                        im1 = getRandomInt(25);
-                        im2 = getRandomInt(25);
-                        while (im1 == im2) {
-                            im2 = getRandomInt(25);
-                        }
+            document.getElementById("myImg1").src = data[im1].image;
+            document.getElementById("myImg2").src = data[im2].image;
 
-                        document.getElementById("myImg1").src = data[im1].image;
-                        document.getElementById("myImg2").src = data[im2].image;
-                    })
-                    .catch(err => {
-                        console.error('An error ocurred', err);
-                    });
+            char1 = "<p> <i>" + data[im1].name + "</i> </p>";
+            char2 = "<p> <i>" + data[im2].name + "</i> </p>";
 
-                fetch('http://ron-swanson-quotes.herokuapp.com/v2/quotes/2')
-                    .then(response => response.json())
-                    .then(data => {
-                        document.getElementById("left").innerHTML += "</br> <p>" + data[0] + "</p>";
-                        document.getElementById("right").innerHTML += "</br> <p>" + data[1] + "</p>";
-                    })
-                    .catch(err => {
-                        console.error('An error ocurred', err);
-                    });
-            </script>
+            //Ron swanson
+		    fetch('http://ron-swanson-quotes.herokuapp.com/v2/quotes/2')
+		        .then(response => response.json())
+		        .then(data => {
+		            document.getElementById("left").innerHTML += "</br> <p>" + data[0] + "</p>" + char1;
+		            document.getElementById("right").innerHTML += "</br> <p>" + data[1] + "</p>" + char2;
+		        })
+		        .catch(err => {
+		            console.error('An error ocurred', err);
+		        });
+
+        })
+        .catch(err => {
+            console.error('An error ocurred', err);
+        });
+
+
+</script>
 
 </body>
-
 </html>
