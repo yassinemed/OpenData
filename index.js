@@ -4,18 +4,21 @@ const request = require('request')
 //test
 const app = express()
 
-app.use(express.static('public'));
-
 app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/public/getData.html');
+	res.sendFile(__dirname + '/getData.html');
 });
+
 
 app.get('/getcards', function (req, res) {
 	reqURL = "https://raw.githubusercontent.com/nodanaonlyzuul/against-humanity/master/source/cards.json"
 	request(reqURL,
 		function (error, response, body) {
+			var questions = JSON.parse(body).filter(entry => entry.cardType === 'Q')
+			var answers = JSON.parse(body).filter(entry => entry.cardType === 'A')
 
-			res.send(body)
+
+
+			res.send(answers)
 		})
 })
 
