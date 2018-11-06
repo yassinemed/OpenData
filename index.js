@@ -4,8 +4,10 @@ const request = require('request')
 //test
 const app = express()
 
+app.use(express.static('public'));
+
 app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/getData.html');
+	res.sendFile(__dirname + '/public/getData.html');
 });
 
 
