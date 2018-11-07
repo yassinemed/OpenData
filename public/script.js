@@ -2,13 +2,16 @@
 					return Math.floor(Math.random() * Math.floor(max));
 				}
 				var char1, char2;
-				var name_left, name_right;
+				var hp_left, hp_right;
+				
+				var citation_left;
+				var citation_right;
 
 
 				fetch('/getimage').then(response => response.json()).then(data => {
 
-						name_left = data[0].name;
-						name_right = data[0].name;
+						hp_left = data[0];
+						hp_right = data[1];
 						document.getElementById("myImg1").src = data[0].url;
 						document.getElementById("myImg2").src = data[1].url;
 
@@ -27,6 +30,7 @@
 								.then(data => {
 									quote_left = data[0]
 									document.getElementById("left").innerHTML += "</br> <p> \"" + data[0] + "\"</p>" + char1;
+									citation_left=data[0];
 								})
 								.catch(err => {
 									console.error('An error ocurred', err);
@@ -38,6 +42,7 @@
 								.then(response => response.json())
 								.then(data => {
 									document.getElementById("left").innerHTML += "</br> <p> \"" + data.text + "\"</p>" + char1;
+									citation_left=data.text;
 								})
 								.catch(err => {
 									console.error('An error ocurred', err);
@@ -55,6 +60,7 @@
 								.then(data => {
 									quote_right = data[0]
 									document.getElementById("right").innerHTML += "</br> <p>\"" + data[0] + "\"</p>" + char2;
+									citation_right=data[0];
 								})
 								.catch(err => {
 									console.error('An error ocurred', err);
@@ -65,6 +71,7 @@
 								.then(response => response.json())
 								.then(data => {
 									document.getElementById("right").innerHTML += "</br> <p>\"" + data.text + "\"</p>" + char2;
+									citation_right=data.text;
 								})
 								.catch(err => {
 									console.error('An error ocurred', err);
@@ -77,6 +84,9 @@
 					});
 
 				function cl_left() {
+					var perso_cita_left = '{"name":"'+hp_left['name']+'","citation":"'+citation_left+'"}';
+					alert(perso_cita_left);
+
 					fetch('/clicked', {
 							method: 'POST'
 						})
@@ -94,12 +104,16 @@
 				}
 
 				function cl_right() {
+					var perso_cita_right = '{"name":"'+hp_right['name']+'","citation":"'+citation_right+'"}';
+					alert(perso_cita_right);
+
 					fetch('/clicked', {
 							method: 'POST'
 						})
 						.then(function (response) {
 							if (response.ok) {
 								console.log('Click was recorded');
+								alert(hp_right);
 								return;
 							}
 							throw new Error('Request failed.');
