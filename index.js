@@ -53,11 +53,20 @@ app.get('/getimage', function (req, res) {
 	request(reqURL,
 		function (error, response, body) {
 			var personnages = JSON.parse(body);
-			var indexImage=Math.floor(Math.random() * personnages.length);
-			
-			var image=personnages[indexImage]['image'];
 
-			res.send(image);
+			var indexImage1=0;
+			var indexImage2=0;
+			while (indexImage1==indexImage2){
+				var indexImage1=Math.floor(Math.random() * personnages.length);
+				var indexImage2=Math.floor(Math.random() * personnages.length);
+			}
+
+			var image1=personnages[indexImage1]['image'];
+			var image2=personnages[indexImage2]['image'];
+
+			jsonImage='[{"url":"'+image1+'"},'+'{"url":"'+image2+'"}]'
+
+			res.send(jsonImage);
 		})
 })
 
