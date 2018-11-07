@@ -36,12 +36,14 @@
 						char1 = "<p> <i>" + data[im1].name + "</i> </p>";
 						char2 = "<p> <i>" + data[im2].name + "</i> </p>";
 
+						// Gauche
+
+
 						probRon = getRandomInt(10)
 
 						if (probRon == 0) {
 
-							//Ron swanson
-							fetch('getswanson')
+							fetch('/getswanson')
 								.then(response => response.json())
 								.then(data => {
 									quote_left = data[0]
@@ -51,17 +53,8 @@
 									console.error('An error ocurred', err);
 								})
 
-							fetch('getswanson')
-								.then(response => response.json())
-								.then(data => {
-									quote_right = data[0]
-									document.getElementById("right").innerHTML += "</br> <p>\"" + data[0] + "\"</p>" + char2;
-								})
-								.catch(err => {
-									console.error('An error ocurred', err);
-								})
 						} else {
-							// Limite Limite
+
 							fetch('/getcards')
 								.then(response => response.json())
 								.then(data => {
@@ -71,6 +64,25 @@
 									console.error('An error ocurred', err);
 								});
 
+						}
+
+						probRon = getRandomInt(10)
+
+						if (probRon == 0) {
+
+							// Droite
+
+							fetch('/getswanson')
+								.then(response => response.json())
+								.then(data => {
+									quote_right = data[0]
+									document.getElementById("right").innerHTML += "</br> <p>\"" + data[0] + "\"</p>" + char2;
+								})
+								.catch(err => {
+									console.error('An error ocurred', err);
+								})
+
+						} else {
 							fetch('/getcards')
 								.then(response => response.json())
 								.then(data => {

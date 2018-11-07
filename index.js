@@ -28,21 +28,22 @@ app.get('/getcards', function (req, res) {
 			var total = question;
 			var i;
 
-			for (i = 0; i<numAnswer; i++){
+			for (i = 0; i < numAnswer; i++) {
 				idAnswer = Math.floor(Math.random() * listOfAnswers.length);
 				answer = listOfAnswers[idAnswer]['text'];
 
 				var index_ = question.indexOf('_');
 				answer = answer.replace('.', '')
-				if (index_ == -1){
+				if (index_ == -1) {
 					total = question.concat(" ", answer);
-				}
-				else{
-					if (index_ != 0) {answer = answer.charAt(0).toLowerCase() + answer.slice(1)}
+				} else {
+					if (index_ != 0) {
+						answer = answer.charAt(0).toLowerCase() + answer.slice(1)
+					}
 					total = total.replace('_', answer);
 				}
 			}
-
+			console.log(total)
 			res.send("{\"text\":\"" + total + "\"}");
 		})
 })
@@ -54,20 +55,20 @@ app.get('/getimage', function (req, res) {
 		function (error, response, body) {
 			var personnages = JSON.parse(body);
 
-			var indexImage1=0;
-			var indexImage2=0;
-			while (indexImage1==indexImage2){
-				var indexImage1=Math.floor(Math.random() * personnages.length);
-				var indexImage2=Math.floor(Math.random() * personnages.length);
+			var indexImage1 = 0;
+			var indexImage2 = 0;
+			while (indexImage1 == indexImage2) {
+				var indexImage1 = Math.floor(Math.random() * personnages.length);
+				var indexImage2 = Math.floor(Math.random() * personnages.length);
 			}
 
-			var nom1=personnages[indexImage1]['name'];
-			var image1=personnages[indexImage1]['image'];
+			var nom1 = personnages[indexImage1]['name'];
+			var image1 = personnages[indexImage1]['image'];
 
-			var nom2=personnages[indexImage2]['name'];
-			var image2=personnages[indexImage2]['image'];
+			var nom2 = personnages[indexImage2]['name'];
+			var image2 = personnages[indexImage2]['image'];
 
-			jsonImage='[{"name":"'+nom1+'","url":"'+image1+'"},'+'{"name":"'+nom2+'","url":"'+image2+'"}]'
+			jsonImage = '[{"name":"' + nom1 + '","url":"' + image1 + '"},' + '{"name":"' + nom2 + '","url":"' + image2 + '"}]'
 
 			res.send(jsonImage);
 		})
