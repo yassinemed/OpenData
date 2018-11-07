@@ -73,6 +73,16 @@ app.get('/getimage', function (req, res) {
 		})
 })
 
+app.get('/getpersonages', function (req, res) {
+	reqURL = "http://hp-api.herokuapp.com/api/characters"
+	request(reqURL,
+		function (error, response, body) {
+			var personnages = JSON.parse(body);
+
+			res.send(body);
+		})
+})
+
 
 app.get('/getswanson', function (req, res) {
 	reqURL = "http://ron-swanson-quotes.herokuapp.com/v2/quotes/1"
