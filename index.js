@@ -43,7 +43,6 @@ app.get('/getcards', function (req, res) {
 					total = total.replace('_', answer);
 				}
 			}
-			console.log(total)
 			res.send("{\"text\":\"" + total + "\"}");
 		})
 })
