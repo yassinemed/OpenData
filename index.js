@@ -43,7 +43,7 @@ app.get('/getcards', function (req, res) {
 				}
 			}
 
-			res.send(total);
+			res.send("{\"text\":\"" + total + "\"}");
 		})
 })
 
