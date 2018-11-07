@@ -33,12 +33,14 @@ app.get('/getcards', function (req, res) {
 				answer = listOfAnswers[idAnswer]['text'];
 
 				var index_ = question.indexOf('_');
-				answer = answer.replace('.', '')
 				if (index_ == -1) {
 					total = question.concat(" ", answer);
 				} else {
 					if (index_ != 0) {
 						answer = answer.charAt(0).toLowerCase() + answer.slice(1)
+					}
+					if (index_ != question.length-1) {
+						answer = answer.replace('.', '')
 					}
 					total = total.replace('_', answer);
 				}
