@@ -1,11 +1,26 @@
 const express = require('express')
 const request = require('request')
+const MongoClient = require('mongodb').MongoClient;
 
 //test
 const app = express()
 
 app.use(express.static('public'));
 
+let db;
+
+const url = 'mongodb://user:azerty69@ds253203.mlab.com:53203/mongodab_test';
+
+MongoClient.connect(url, (err, database) => {
+	if (err) {
+		return console.log(err);
+	}
+	db = database;
+	// start the express web server listening on 8080
+	app.listen(8080, () => {
+		console.log('listening on 8080');
+	});
+});
 
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/public/getData.html');
@@ -92,6 +107,22 @@ app.get('/getswanson', function (req, res) {
 			res.send(body);
 		})
 })
+
+app.post('/clicked', (req, res) => {
+	const click = {
+		clickTime: new Date()
+	};
+	console.log(click);
+	console.log(db);
+
+	db.collection('clicks').save(click, (err, result) => {
+		if (err) {
+			return console.log(err);
+		}
+		console.log('click added to db');
+		res.sendStatus(201);
+	});
+});
 
 
 port = process.env.PORT || 8080
