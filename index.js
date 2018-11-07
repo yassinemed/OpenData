@@ -6,6 +6,7 @@ const app = express()
 
 app.use(express.static('public'));
 
+
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/public/getData.html');
 });
@@ -45,6 +46,31 @@ app.get('/getcards', function (req, res) {
 			res.send(total);
 		})
 })
+
+
+app.get('/getimage', function (req, res) {
+	reqURL = "http://hp-api.herokuapp.com/api/characters"
+	request(reqURL,
+		function (error, response, body) {
+			var personnages = JSON.parse(body);
+			var indexImage=Math.floor(Math.random() * personnages.length);
+			
+			var image=personnages[indexImage]['image'];
+
+			res.send(image);
+		})
+})
+
+
+app.get('/getswanson', function (req, res) {
+	reqURL = "http://ron-swanson-quotes.herokuapp.com/v2/quotes/1"
+	request(reqURL,
+		function (error, response, body) {
+
+			res.send(body);
+		})
+})
+
 
 port = process.env.PORT || 8080
 
