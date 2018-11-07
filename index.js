@@ -41,14 +41,9 @@ app.get('/getcards', function (req, res) {
 					total = total.replace('_', answer);
 				}
 			}
-			test = question.concat('<br/>'+answer+'<br/>'+total+'<br/>'+numAnswer);
 
-			res.send(test);
+			res.send(total);
 		})
-})
-
-app.get('/toto', function (req, res) {
-	res.send('Hello Toto!')
 })
 
 port = process.env.PORT || 8080
