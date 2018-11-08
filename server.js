@@ -25,7 +25,7 @@ MongoClient.connect(url, (err, database) => {
 });
 
 app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/public/getData.html');
+	res.sendFile(__dirname + '/public/getdata.html');
 });
 
 
