@@ -93,7 +93,7 @@ app.get('/getimage', function (req, res) {
 		})
 })
 
-app.get('/getpersonages', function (req, res) {
+app.get('/getpersonnages', function (req, res) {
 	reqURL = "http://hp-api.herokuapp.com/api/characters"
 	request(reqURL,
 		function (error, response, body) {
