@@ -57,7 +57,8 @@ app.get('/getcards', function (req, res) {
 						answer = answer.charAt(0).toLowerCase() + answer.slice(1)
 					}
 					if (index_ != question.length - 1) {
-						answer = answer.replace('.', '')
+						var pos = answer.lastIndexOf('.')
+						answer = answer.substring(0, pos) + '' + answer.substring(pos+1)
 					}
 					total = total.replace('_', answer);
 				}

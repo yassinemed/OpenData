@@ -24,6 +24,11 @@ img {
     height: 40em;
 }
 
+img:hover{
+  cursor: pointer;
+  filter: invert(80%);
+}
+
 body {
   background-color: black;
   color: white;
