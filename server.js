@@ -52,12 +52,11 @@ app.get('/getcards', function (req, res) {
 				var index_ = question.indexOf('_');
 				if (index_ == -1) {
 					total = question.concat(" ", answer);
-				}
-				else {
+				} else {
 					if (index_ != 0) {
 						answer = answer.charAt(0).toLowerCase() + answer.slice(1)
 					}
-					if (index_ != question.length-1) {
+					if (index_ != question.length - 1) {
 						answer = answer.replace('.', '')
 					}
 					total = total.replace('_', answer);
