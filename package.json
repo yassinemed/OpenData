@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/yassinemed/mongolab#readme",
   "dependencies": {
+    "ejs": "^2.6.1",
     "express": "^4.16.4",
     "mongodb": "^2.2.36",
     "request": "^2.88.0"

@@ -1,13 +1,14 @@
-<!-- views/index.ejs -->
 <!doctype html>
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <title>Ranking</title>
+    <title>EHPAD Harvester</title>
+    <meta descr="pour récupérer des listing d'EHPAD">
    
 </head>
 <body>
 
+<!-- views/index.ejs -->
 data : <%= JSON.stringify(data.json)%>
 <ul>
     <% for(var i=0; i<data.length;i++) { %>

@@ -5,11 +5,12 @@ const MongoClient = require('mongodb').MongoClient;
 //test
 const app = express()
 
-app.use(express.static('public'));
+app.use(express.static('views'));
 
 let db;
 
 const url = 'mongodb://user:azerty69@ds253203.mlab.com:53203/mongodab_test';
+app.set('view engine', 'ejs') // set up ejs for templating
 
 const port_dbb = 8001
 
@@ -23,10 +24,19 @@ MongoClient.connect(url, (err, database) => {
 		console.log('listening on ' + String(port_dbb));
 	});
 });
-
+/*
 app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/public/getData.html');
+	res.sendFile(__dirname + '/views/getData.html');
 });
+*/
+app.get('/', function (req, res) {
+  	reqURL = "https://api.mlab.com/api/1/databases/mongodab_test/collections/hp_test?&apiKey=tBP9gjIqtyrt9TcTKdW79ESkdYrfjc_r"
+	request(reqURL,
+		function (error, response, body) {
+			var data  = JSON.parse(body);
+			res.render('getdata.ejs',{data:data});
+		})
+})
 
 
 app.get('/getcards', function (req, res) {
@@ -113,15 +123,7 @@ app.get('/getswanson', function (req, res) {
 		})
 })
 
-app.get('/getDB', function (req, res) {
-	reqURL = "https://api.mlab.com/api/1/databases/mongodab_test/collections/hp_test?&apiKey=tBP9gjIqtyrt9TcTKdW79ESkdYrfjc_r"
-	request(reqURL,
-		function (error, response, body) {
-			res.send(body);
-			var data  = JSON.parse(body);
-			res.render('rank.ejs',{data:data});
-		})
-})
+
 
 app.post('/clicked', (req, res) => {
 	const click = {
