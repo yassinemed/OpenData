@@ -113,6 +113,16 @@ app.get('/getswanson', function (req, res) {
 		})
 })
 
+app.get('/getDB', function (req, res) {
+	reqURL = "https://api.mlab.com/api/1/databases/mongodab_test/collections/hp_test?&apiKey=tBP9gjIqtyrt9TcTKdW79ESkdYrfjc_r"
+	request(reqURL,
+		function (error, response, body) {
+			res.send(body);
+			var data  = JSON.parse(body);
+			res.render('rank.ejs',{data:data});
+		})
+})
+
 app.post('/clicked', (req, res) => {
 	const click = {
 		clickTime: new Date()
