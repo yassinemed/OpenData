@@ -1,4 +1,4 @@
-# Interropérabilité, web et data science
+# Interopérabilité, web et data science
 
 Dans un monde composé de systèmes et de produits hétérogènes, la bonne communication est un enjeu des plus complexes, il est donc justifié de se demander quelle est la solution mise en place afin de permettre la bonne cohabitation de ces derniers afin de pouvoir en tirer une utilisation optimale.
 
