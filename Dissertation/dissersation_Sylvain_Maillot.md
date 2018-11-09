@@ -69,4 +69,4 @@ Et pour bien évidemment récupérer toutes sortes de données afin de construir
 
 ### NB
 
-Je tiens tout particulièrement à m'excuse quant aux nombreuses fautes et à la piètre qualité de ce travail d'écriture, qui est du à une très mauvaise gestion dû temps de ma part, ainsi qu'à une connexion internet très limité au moment de l'écriture et de l’envoie de cette dissertation. 
+Je tiens tout particulièrement à m'excuser quant aux nombreuses fautes et à la piètre qualité de ce travail d'écriture, qui est dû à une très mauvaise gestion du temps de ma part, ainsi qu'à une connexion internet très limité au moment de l'écriture et de l’envoie de cette dissertation. 
