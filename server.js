@@ -1,11 +1,13 @@
 const express = require('express')
 const request = require('request')
 const MongoClient = require('mongodb').MongoClient;
+const bodyParser = require('body-parser')
 
 //test
 const app = express()
 
-app.use(express.static('public'));
+app.use(express.static('public'))
+app.use(bodyParser.json())
 
 let db;
 
@@ -87,6 +89,7 @@ app.get('/getimage', function (req, res) {
 			var image2 = personnages[indexImage2]['image'];
 
 			jsonImage = '[{"name":"' + nom1 + '","url":"' + image1 + '"},' + '{"name":"' + nom2 + '","url":"' + image2 + '"}]'
+			//jsonImage = personnages[indexImage1]
 
 			res.send(jsonImage);
 		})
@@ -112,21 +115,42 @@ app.get('/getswanson', function (req, res) {
 		})
 })
 
-app.post('/clicked', (req, res) => {
+app.post('/clicked', function (req, res) {
+	body = req.body
+	console.log("body : " + body)
+	console.log("body.keys : " + Object.keys(body))
+	console.log("body.name : " + body.name)
+	console.log("body.citation : " + body.citation)
 	const click = {
-		clickTime: new Date()
+		name: body.name,
+		citation: [body.citation]
 	};
-	//console.log(click);
+	console.log(click);
 	//console.log(db);
-
-	db.collection('clicks').save(click, (err, result) => {
+	/*
+		db.collection('hp_test').save(click, (err, result) => {
+			if (err) {
+				return console.log(err);
+			}
+			console.log('click added to db');
+			res.sendStatus(201);
+		});
+		*/
+	db.collection('hp_test').findOneAndUpdate({
+		name: body.name
+	}, {
+		name: body.name,
+		citation: body.citation
+	}, {
+		upsert: true
+	}, (err, result) => {
 		if (err) {
 			return console.log(err);
 		}
 		console.log('click added to db');
 		res.sendStatus(201);
 	});
-});
+})
 
 
 port = process.env.PORT || 8080
