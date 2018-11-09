@@ -19,7 +19,7 @@
   "homepage": "https://github.com/yassinemed/mongolab#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "mongodb": "^2.2.33",
+    "mongodb": "^2.2.36",
     "request": "^2.88.0"
   }
 }
