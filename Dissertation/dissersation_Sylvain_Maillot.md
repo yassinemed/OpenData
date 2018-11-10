@@ -62,10 +62,10 @@ Mais aussi pour échanger avec mes futurs collègues.
 Et pour bien évidemment récupérer toutes sortes de données afin de construire un monde meilleur. 
 																											Sylvain Maillot
 ### Sources
-[Apitux]([http://www.apitux.org/index.php?2006/06/11/131-compatibilite-standard-de-fait-et-interoperabilite](http://www.apitux.org/index.php?2006/06/11/131-compatibilite-standard-de-fait-et-interoperabilite))
-[Astuces-aide-informatique]([https://www.astuces-aide-informatique.info/70/qu-est-ce-que-le-web)
-[Wikipedia - Interopérabilité]([https://fr.wikipedia.org/wiki/Interop%C3%A9rabilit%C3%A9)
-[Wikipedia - W3C]([https://fr.wikipedia.org/wiki/World_Wide_Web_Consortium)
+- [Apitux](http://www.apitux.org/index.php?2006/06/11/131-compatibilite-standard-de-fait-et-interoperabilite)
+- [Astuces-aide-informatique](https://www.astuces-aide-informatique.info/70/qu-est-ce-que-le-web)
+- [Wikipedia - Interopérabilité](https://fr.wikipedia.org/wiki/Interop%C3%A9rabilit%C3%A9)
+- [Wikipedia - W3C](https://fr.wikipedia.org/wiki/World_Wide_Web_Consortium)
 
 ### NB
 
