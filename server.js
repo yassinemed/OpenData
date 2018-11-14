@@ -139,6 +139,16 @@ app.post('/clicked', function (req, res) {
 				} else {
 					db.collection('hp_test').insert({
 						name: body.name,
+						species: body.species,
+						gender: body.gender,
+						house: body.house,
+						dateOfBirth: body.dateOfBirth,
+						yearOfBirth: body.yearOfBirth,
+						ancestry: body.ancestry,
+						eyeColour: body.eyeColour,
+						hairColour: body.hairColour,
+						patronus: body.patronus,
+						actor: body.actor,
 						citation: [{
 							sentence: body.citation,
 							count: 1
