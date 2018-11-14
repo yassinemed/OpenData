@@ -69,7 +69,7 @@ app.get('/getcards', function (req, res) {
 })
 
 
-app.get('/getimage', function (req, res) {
+app.get('/gethp', function (req, res) {
 	reqURL = "http://hp-api.herokuapp.com/api/characters"
 	request(reqURL,
 		function (error, response, body) {
@@ -82,26 +82,9 @@ app.get('/getimage', function (req, res) {
 				var indexImage2 = Math.floor(Math.random() * personnages.length);
 			}
 
-			var nom1 = personnages[indexImage1]['name'];
-			var image1 = personnages[indexImage1]['image'];
-
-			var nom2 = personnages[indexImage2]['name'];
-			var image2 = personnages[indexImage2]['image'];
-
-			jsonImage = '[{"name":"' + nom1 + '","url":"' + image1 + '"},' + '{"name":"' + nom2 + '","url":"' + image2 + '"}]'
-			//jsonImage = personnages[indexImage1]
+			jsonImage = "[" + JSON.stringify(personnages[indexImage1]) + "," + JSON.stringify(personnages[indexImage2]) + "]"
 
 			res.send(jsonImage);
-		})
-})
-
-app.get('/getpersonnages', function (req, res) {
-	reqURL = "http://hp-api.herokuapp.com/api/characters"
-	request(reqURL,
-		function (error, response, body) {
-			var personnages = JSON.parse(body);
-
-			res.send(body);
 		})
 })
 

@@ -8,15 +8,16 @@ var citation_left;
 var citation_right;
 
 function page() {
-	fetch('/getimage').then(response => response.json()).then(data => {
+	fetch('/gethp').then(response => response.json()).then(data => {
 
 			hp_left = data[0];
 			hp_right = data[1];
-			document.getElementById("myImg1").src = data[0].url;
-			document.getElementById("myImg2").src = data[1].url;
 
-			char1 = "<p> <i>" + data[0].name + "</i> </p>";
-			char2 = "<p> <i>" + data[1].name + "</i> </p>";
+			document.getElementById("myImg1").src = data[0].image;
+			document.getElementById("myImg2").src = data[1].image;
+
+			char1 = data[0].name;
+			char2 = data[1].name;
 
 
 
@@ -28,9 +29,9 @@ function page() {
 				fetch('/getswanson')
 					.then(response => response.json())
 					.then(data => {
-						quote_left = data[0]
-						document.getElementById("left").innerHTML += "</br> <p> \"" + data[0] + "\"</p>" + char1;
 						citation_left = data[0];
+						document.getElementById("citation_left").innerHTML = citation_left;
+						document.getElementById("char1").innerHTML = char1
 					})
 					.catch(err => {
 						console.error('An error ocurred', err);
@@ -41,8 +42,9 @@ function page() {
 				fetch('/getcards')
 					.then(response => response.json())
 					.then(data => {
-						document.getElementById("left").innerHTML += "</br> <p> \"" + data.text + "\"</p>" + char1;
 						citation_left = data.text;
+						document.getElementById("citation_left").innerHTML = citation_left;
+						document.getElementById("char1").innerHTML = char1
 					})
 					.catch(err => {
 						console.error('An error ocurred', err);
@@ -58,9 +60,9 @@ function page() {
 				fetch('/getswanson')
 					.then(response => response.json())
 					.then(data => {
-						quote_right = data[0]
-						document.getElementById("right").innerHTML += "</br> <p>\"" + data[0] + "\"</p>" + char2;
 						citation_right = data[0];
+						document.getElementById("citation_right").innerHTML = citation_right;
+						document.getElementById("char2").innerHTML = char2
 					})
 					.catch(err => {
 						console.error('An error ocurred', err);
@@ -70,8 +72,9 @@ function page() {
 				fetch('/getcards')
 					.then(response => response.json())
 					.then(data => {
-						document.getElementById("right").innerHTML += "</br> <p>\"" + data.text + "\"</p>" + char2;
 						citation_right = data.text;
+						document.getElementById("citation_right").innerHTML = citation_right
+						document.getElementById("char2").innerHTML = char2
 					})
 					.catch(err => {
 						console.error('An error ocurred', err);
