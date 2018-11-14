@@ -117,39 +117,54 @@ app.get('/getswanson', function (req, res) {
 
 app.post('/clicked', function (req, res) {
 	body = req.body
-	console.log("body : " + body)
-	console.log("body.keys : " + Object.keys(body))
-	console.log("body.name : " + body.name)
-	console.log("body.citation : " + body.citation)
-	const click = {
+
+	db.collection('hp_test').findOne({
 		name: body.name,
-		citation: [body.citation]
-	};
-	console.log(click);
-	//console.log(db);
-	/*
-		db.collection('hp_test').save(click, (err, result) => {
-			if (err) {
-				return console.log(err);
-			}
-			console.log('click added to db');
-			res.sendStatus(201);
-		});
-		*/
-	db.collection('hp_test').findOneAndUpdate({
-		name: body.name
-	}, {
-		name: body.name,
-		citation: body.citation
-	}, {
-		upsert: true
+		"citation.sentence": body.citation
 	}, (err, result) => {
 		if (err) {
 			return console.log(err);
 		}
-		console.log('click added to db');
-		res.sendStatus(201);
-	});
+		if (result) {
+			db.collection('hp_test').updateOne({
+				name: body.name,
+				"citation.sentence": body.citation
+			}, {
+				$inc: {
+					"citation.$.count": 1
+				}
+			})
+		} else {
+			db.collection('hp_test').findOne({
+				name: body.name,
+			}, (err, result) => {
+				if (err) {
+					return console.log(err);
+				}
+				if (result) {
+					db.collection('hp_test').findOneAndUpdate({
+						name: body.name
+					}, {
+						$push: {
+							citation: {
+								sentence: body.citation,
+								count: 1
+							}
+						}
+					})
+
+				} else {
+					db.collection('hp_test').insert({
+						name: body.name,
+						citation: [{
+							sentence: body.citation,
+							count: 1
+						}]
+					})
+				}
+			})
+		}
+	})
 })
 
 

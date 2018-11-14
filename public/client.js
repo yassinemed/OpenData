@@ -85,15 +85,23 @@ function page() {
 }
 
 function cl_left() {
-	var perso_cita_left = '{"name":"' + hp_left['name'] + '","citation":"' + citation_left + '"}';
-	alert(perso_cita_left);
+	var perso_cita_left = {}
+	perso_cita_left.name = hp_left['name']
+	perso_cita_left.citation = citation_left
 
+	console.log(perso_cita_left);
 	fetch('/clicked', {
-			method: 'POST'
+			method: 'POST',
+			headers: {
+				'content-Type': 'application/json'
+			},
+			credentials: "same-origin",
+			body: JSON.stringify(perso_cita_left)
 		})
 		.then(function (response) {
 			if (response.ok) {
 				console.log('Click was recorded');
+				alert(hp_left);
 				return;
 			}
 			throw new Error('Request failed.');
@@ -101,6 +109,7 @@ function cl_left() {
 		.catch(function (error) {
 			console.log(error);
 		});
+	page();
 }
 
 function cl_right() {
