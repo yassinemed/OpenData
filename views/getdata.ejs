@@ -18,19 +18,24 @@
 <ul>
     <% for(var i=0; i<data.length;i++) { %>
     <li>
+        <% var ind_best_quote = 0; %>
+        <% var value_best_quote = 0; %>
         <!--<a href="<% data[i].url %>"></a>-->
         <h1><%= data[i].name %></h1>
-        <!--<p> <% data[i].species %> </p>
-        <p> <% data[i].gender %> </p>
-        <p> <% data[i].house %> </p>
-        <p> <% data[i].dateOfBirth %> </p>
-        <p> <% data[i].yearOfBirth %> </p>
-        <p> <% data[i].ancestry %> </p>
-        <p> <% data[i].eyeColour %> </p>
-        <p> <% data[i].hairColour %> </p>
-        <p> <% data[i].patronus %> </p>
-        <p> <% data[i].actor %> </p>-->
-        <p> <%= data[i].citation %> </p>
+        <p> <%= data[i].species %> </p>
+        <p> <%= data[i].gender %> </p>
+        <p> <%= data[i].house %> </p>
+        <p> <%= data[i].dateOfBirth %> </p>
+        <p> <%= data[i].yearOfBirth %> </p>
+        <p> <%= data[i].ancestry %> </p>
+        <p> <%= data[i].eyeColour %> </p>
+        <p> <%= data[i].hairColour %> </p>
+        <p> <%= data[i].patronus %> </p>
+        <p> <%= data[i].actor %> </p>
+        <% for(var j=0; j<data[i].citation.length;j++) { %>
+            <% if(data[i].citation[j].count > value_best_quote){ value_best_quote = data[i].citation[j].count; ind_best_quote = j} %>
+        <% } %>
+        <p> <%= data[i].citation[ind_best_quote].sentence%> </p>
     </li>
     <% } %>
 </ul>
