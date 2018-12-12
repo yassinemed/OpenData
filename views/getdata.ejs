@@ -1,20 +1,33 @@
 <html>
 
 <head>
-	<link rel="stylesheet" type="text/css" href="interface.css">
+	<link href="https://fonts.googleapis.com/css?family=Jolly+Lodger" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/interface.css">
 	<script type="text/javascript" src="client.js"></script>
 </head>
 
 <body>
+	<img id='ecoplus' class="top" src="css/ecoplus.png">
+	<img id='ok' class="top" src="css/ok.png">
+	<h1 id='titre'>Harry potter against Humanity</h1>
+		
+	
 	<div class="container">
 		<div id="left" class="col" onclick="cl_left()">
-			<img id="myImg1">
+			<img id="myImg1" class="img">
 		</div>
 		<div id="right" class="col" onclick="cl_right()">
-			<img id="myImg2">
+			<img id="myImg2" class="img" >
 		</div>
-		<div>
 
+		<div>
+		<audio controls autoplay loop hidden>
+			<source src="css/cancer_theme.mp3" type="audio/mpeg">
+			Your browser does not support the audio element.
+		</audio>
+		</div>
+    
+<div>
 <ul>
     <% for(var i=0; i<data.length;i++) { %>
     <li>
@@ -39,6 +52,7 @@
     </li>
     <% } %>
 </ul>
+</div>
 </body>
 
 </html>
