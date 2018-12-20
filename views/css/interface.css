@@ -85,6 +85,19 @@ body {
 
 .character{
   display: inline-block;
-  width: 400px;
-  margin-left: 50px;
+  margin-left: 30px;
+  width:770px;
+}
+
+.character_text{
+  display: inline-block;
+  width: 350px;
+  margin-left: 30px;
+  vertical-align: top;
+}
+
+.img_resume {
+  width: 23em;
+  height: 27em;
+  vertical-align: top;
 }

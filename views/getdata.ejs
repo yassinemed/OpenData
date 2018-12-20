@@ -33,22 +33,25 @@
     <div class="character">
         <% var ind_best_quote = 0; %>
         <% var value_best_quote = 0; %>
-        <!--<a href="<% data[i].url %>"></a>-->
         <h1 class="nom"><%= data[i].name %></h1>
-        <p> Race : <%= data[i].species %> </p>
-        <p> Genre : <%= data[i].gender %> </p>
-        <p> Maison : <%= data[i].house %> </p>
-        <p> Date de naissance : <%= data[i].dateOfBirth %> </p>
-        <p> Année de naisance : <%= data[i].yearOfBirth %> </p>
-        <p> Ancêtre :  <%= data[i].ancestry %> </p>
-        <p> Couleur des yeux : <%= data[i].eyeColour %> </p>
-        <p> Couleur de cheveux : <%= data[i].hairColour %> </p>
-        <p> Patronus : <%= data[i].patronus %> </p>
-        <p> Acteur : <%= data[i].actor %> </p>
-        <% for(var j=0; j<data[i].citation.length;j++) { %>
-            <% if(data[i].citation[j].count > value_best_quote){ value_best_quote = data[i].citation[j].count; ind_best_quote = j} %>
-        <% } %>
-        <p> Meilleure citation : "<%= data[i].citation[ind_best_quote].sentence%>" </p>
+        <img class ="img_resume" src="<%= data[i].image %>" />
+
+        <div class="character_text">
+            <p> Race : <%= data[i].species %> </p>
+            <p> Genre : <%= data[i].gender %> </p>
+            <p> Maison : <%= data[i].house %> </p>
+            <p> Date de naissance : <%= data[i].dateOfBirth %> </p>
+            <p> Année de naisance : <%= data[i].yearOfBirth %> </p>
+            <p> Ancêtre :  <%= data[i].ancestry %> </p>
+            <p> Couleur des yeux : <%= data[i].eyeColour %> </p>
+            <p> Couleur de cheveux : <%= data[i].hairColour %> </p>
+            <p> Patronus : <%= data[i].patronus %> </p>
+            <p> Acteur : <%= data[i].actor %> </p>
+            <% for(var j=0; j<data[i].citation.length;j++) { %>
+                <% if(data[i].citation[j].count > value_best_quote){ value_best_quote = data[i].citation[j].count; ind_best_quote = j} %>
+            <% } %>
+            <p> Meilleure citation : "<%= data[i].citation[ind_best_quote].sentence%>" </p>
+        </div>
     </div>
     <% } %>
 
