@@ -149,6 +149,7 @@ app.post('/clicked', function (req, res) {
 						hairColour: body.hairColour,
 						patronus: body.patronus,
 						actor: body.actor,
+						image: body.image,
 						citation: [{
 							sentence: body.citation,
 							count: 1

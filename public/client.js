@@ -13,7 +13,8 @@ var char1, char2,
 	eyeColour_left, eyeColour_right,
 	hairColour_left, hairColour_right,
 	patronus_left, patronus_right,
-	actor_left, actor_right;
+	actor_left, actor_right,
+	image_left, image_right;
 
 function page() {
 	fetch('/gethp').then(response => response.json()).then(data => {
@@ -35,6 +36,7 @@ function page() {
 			hairColour_left = data[0].hairColour
 			patronus_left = data[0].patronus
 			actor_left = data[0].actor
+			image_left = data[0].image
 
 			char2 = data[1].name;
 			species_right = data[1].species
@@ -47,6 +49,7 @@ function page() {
 			hairColour_right = data[1].hairColour
 			patronus_right = data[1].patronus
 			actor_right = data[1].actor
+			image_right = data[1].image
 
 			// Gauche
 			probRon = getRandomInt(10)
@@ -128,6 +131,7 @@ function cl_left() {
 	perso_cita_left.hairColour = hairColour_left
 	perso_cita_left.patronus = patronus_left
 	perso_cita_left.actor = actor_left
+	perso_cita_left.image = image_left
 
 	fetch('/clicked', {
 			method: 'POST',
@@ -165,6 +169,7 @@ function cl_right() {
 	perso_cita_right.hairColour = hairColour_right
 	perso_cita_right.patronus = patronus_right
 	perso_cita_right.actor = actor_right
+	perso_cita_right.image = image_right
 
 	fetch('/clicked', {
 			method: 'POST',
