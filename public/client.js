@@ -1,3 +1,5 @@
+var count = 0;
+
 function getRandomInt(max) {
 	return Math.floor(Math.random() * Math.floor(max));
 }
@@ -17,8 +19,9 @@ var char1, char2,
 	image_left, image_right;
 
 function page() {
+	count++;
 	fetch('/gethp').then(response => response.json()).then(data => {
-
+			console.log("1");
 			hp_left = data[0];
 			hp_right = data[1];
 
@@ -152,7 +155,7 @@ function cl_left() {
 		.catch(function (error) {
 			console.log(error);
 		});
-	page();
+	if (count<5) {page()}else{count = 0;location.reload();}
 }
 
 function cl_right() {
@@ -190,7 +193,7 @@ function cl_right() {
 		.catch(function (error) {
 			console.log(error);
 		});
-	page();
+	if (count<5) {page()}else{count = 0;location.reload();};
 }
 
 
