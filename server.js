@@ -1,11 +1,13 @@
 const express = require('express')
 const request = require('request')
 const MongoClient = require('mongodb').MongoClient;
+const bodyParser = require('body-parser')
 
 //test
 const app = express()
 
-app.use(express.static('views'));
+app.use(express.static('public'))
+app.use(bodyParser.json())
 
 let db;
 
@@ -78,7 +80,7 @@ app.get('/getcards', function (req, res) {
 })
 
 
-app.get('/getimage', function (req, res) {
+app.get('/gethp', function (req, res) {
 	reqURL = "http://hp-api.herokuapp.com/api/characters"
 	request(reqURL,
 		function (error, response, body) {
@@ -91,25 +93,9 @@ app.get('/getimage', function (req, res) {
 				var indexImage2 = Math.floor(Math.random() * personnages.length);
 			}
 
-			var nom1 = personnages[indexImage1]['name'];
-			var image1 = personnages[indexImage1]['image'];
-
-			var nom2 = personnages[indexImage2]['name'];
-			var image2 = personnages[indexImage2]['image'];
-
-			jsonImage = '[{"name":"' + nom1 + '","url":"' + image1 + '"},' + '{"name":"' + nom2 + '","url":"' + image2 + '"}]'
+			jsonImage = "[" + JSON.stringify(personnages[indexImage1]) + "," + JSON.stringify(personnages[indexImage2]) + "]"
 
 			res.send(jsonImage);
-		})
-})
-
-app.get('/getpersonnages', function (req, res) {
-	reqURL = "http://hp-api.herokuapp.com/api/characters"
-	request(reqURL,
-		function (error, response, body) {
-			var personnages = JSON.parse(body);
-
-			res.send(body);
 		})
 })
 
@@ -123,23 +109,68 @@ app.get('/getswanson', function (req, res) {
 		})
 })
 
+app.post('/clicked', function (req, res) {
+	body = req.body
 
-
-app.post('/clicked', (req, res) => {
-	const click = {
-		clickTime: new Date()
-	};
-	//console.log(click);
-	//console.log(db);
-
-	db.collection('clicks').save(click, (err, result) => {
+	db.collection('hp_test').findOne({
+		name: body.name,
+		"citation.sentence": body.citation
+	}, (err, result) => {
 		if (err) {
 			return console.log(err);
 		}
-		console.log('click added to db');
-		res.sendStatus(201);
-	});
-});
+		if (result) {
+			db.collection('hp_test').updateOne({
+				name: body.name,
+				"citation.sentence": body.citation
+			}, {
+				$inc: {
+					"citation.$.count": 1
+				}
+			})
+		} else {
+			db.collection('hp_test').findOne({
+				name: body.name,
+			}, (err, result) => {
+				if (err) {
+					return console.log(err);
+				}
+				if (result) {
+					db.collection('hp_test').findOneAndUpdate({
+						name: body.name
+					}, {
+						$push: {
+							citation: {
+								sentence: body.citation,
+								count: 1
+							}
+						}
+					})
+
+				} else {
+					db.collection('hp_test').insert({
+						name: body.name,
+						species: body.species,
+						gender: body.gender,
+						house: body.house,
+						dateOfBirth: body.dateOfBirth,
+						yearOfBirth: body.yearOfBirth,
+						ancestry: body.ancestry,
+						eyeColour: body.eyeColour,
+						hairColour: body.hairColour,
+						patronus: body.patronus,
+						actor: body.actor,
+						image: body.image,
+						citation: [{
+							sentence: body.citation,
+							count: 1
+						}]
+					})
+				}
+			})
+		}
+	})
+})
 
 
 port = process.env.PORT || 8080
