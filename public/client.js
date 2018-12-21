@@ -209,3 +209,5 @@ function show_resultats(){
 	var resultats = document.getElementById("resultats");
 	resultats.style.display = "block";
 }
+
+page();
