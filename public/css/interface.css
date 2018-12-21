@@ -1,7 +1,9 @@
 .top {
-  margin-left:10px;
-  width: 40px;
-  height: 40px;
+  width: 70px;
+  height: 70px;
+}
+#ecoplus{
+  float:left;
 }
 #ok {
   float: right;
@@ -79,8 +81,13 @@ body {
 }
 
 
-#all_characters{
-  /*display: table-cell; */ 
+#jeu{
+  display:block;
+}
+
+#resultats{
+  display:none; 
+  margin-top: 80px;
 }
 
 .character{
@@ -101,3 +108,39 @@ body {
   height: 27em;
   vertical-align: top;
 }
+
+
+/* The navigation bar */
+#navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 99%; /* Full width */
+  text-align: center;
+}
+
+
+
+/* Links inside the navbar */
+#navbar p {
+  display: inline-block;
+  color: #f2f2f2;
+  font-size: 30px;
+  margin:20px;  
+  font-family: 'Jolly Lodger';
+}
+
+/* Change background on mouse-over */
+#navbar p:hover {
+  background: #ddd;
+  color: black;
+  cursor: pointer;
+
+}
+
+/* Main content */
+#main {
+  margin-top: 50px; /* Add a top margin to avoid content overlay */
+}
+

@@ -192,3 +192,20 @@ function cl_right() {
 		});
 	page();
 }
+
+
+function show_jeu(){
+	var jeu = document.getElementById("jeu");
+	jeu.style.display = "block";
+	
+	var resultats = document.getElementById("resultats");
+	resultats.style.display = "none";
+}
+
+function show_resultats(){
+	var jeu = document.getElementById("jeu");
+	jeu.style.display = "none";
+	
+	var resultats = document.getElementById("resultats");
+	resultats.style.display = "block";
+}
