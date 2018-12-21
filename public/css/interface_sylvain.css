@@ -1,0 +1,35 @@
+.container {
+ display:table;
+    position: absolute;
+    top: 60%;
+    left: 47%;
+    margin-top: -25%;
+    margin-left: -25%;
+}
+.col{
+ width:500;
+ display:table-cell;
+ word-wrap:break-word;
+ float: left;
+}
+
+
+
+#left {
+	margin-right:100px;
+}
+
+img {
+    width: 34em;
+    height: 40em;
+}
+
+img:hover{
+  cursor: pointer;
+  filter: invert(80%);
+}
+
+body {
+  background-color: black;
+  color: white;
+}

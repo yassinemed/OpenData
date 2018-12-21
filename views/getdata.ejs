@@ -1,0 +1,93 @@
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Jolly+Lodger" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/interface.css">
+    <script type="text/javascript" src="client.js"></script>
+</head>
+
+<body>
+    <div id="navbar">
+        <img id='ecoplus' class="top" src="css/ecoplus.png">
+        <p onclick="show_jeu()">Le Jeu</p>
+        <p onclick="show_resultats()">Résultats</p>
+        <img id='ok' class="top" src="css/ok.png">
+    </div>
+
+    <div id="main">
+        <div id="jeu">
+            <h1>Harry potter against Humanity</h1>
+            <div class="container">
+                <div id="left" class="col" onclick="cl_left()">
+                    <img id="myImg1" class="img"></br>
+                    <p><div id = "citation_left"></div><div id="char1"></div></p>
+                </div>
+                <div id="right" class="col" onclick="cl_right()">
+                    <img id="myImg2" class="img"></br>
+                    <p><div id = "citation_right"></div><div id="char2"></div></p>
+                </div>
+
+                <div>
+                    <audio controls autoplay loop hidden>
+                        <source src="css/cancer_theme.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <div id="resultats">
+            <% for(var i=0; i<data.length;i++) { %>
+            <div class="character">
+                <% var ind_best_quote = 0; %>
+                <% var value_best_quote = 0; %>
+                <h1 class="nom">
+                    <%= data[i].name %>
+                </h1>
+                <img class="img_resume" src="<%= data[i].image %>" />
+
+                <div class="character_text">
+                    <p> Race :
+                        <%= data[i].species %>
+                    </p>
+                    <p> Genre :
+                        <%= data[i].gender %>
+                    </p>
+                    <p> Maison :
+                        <%= data[i].house %>
+                    </p>
+                    <p> Date de naissance :
+                        <%= data[i].dateOfBirth %>
+                    </p>
+                    <p> Année de naisance :
+                        <%= data[i].yearOfBirth %>
+                    </p>
+                    <p> Ancêtre :
+                        <%= data[i].ancestry %>
+                    </p>
+                    <p> Couleur des yeux :
+                        <%= data[i].eyeColour %>
+                    </p>
+                    <p> Couleur de cheveux :
+                        <%= data[i].hairColour %>
+                    </p>
+                    <p> Patronus :
+                        <%= data[i].patronus %>
+                    </p>
+                    <p> Acteur :
+                        <%= data[i].actor %>
+                    </p>
+                    <% for(var j=0; j<data[i].citation.length;j++) { %>
+                    <% if(data[i].citation[j].count > value_best_quote){ value_best_quote = data[i].citation[j].count; ind_best_quote = j} %>
+                    <% } %>
+                    <p> Meilleure citation : "
+                        <%= data[i].citation[ind_best_quote].sentence%>" </p>
+                </div>
+            </div>
+            <% } %>
+
+        </div>
+    </div>
+</body>
+
+</html>
